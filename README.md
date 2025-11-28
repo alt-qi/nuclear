@@ -1,2 +1,2 @@
 # nuclear
-TRD for std::nuclear team.
+TRD for std::nuclear team...
