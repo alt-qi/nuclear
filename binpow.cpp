@@ -10,5 +10,5 @@ ll binpow(ll x, ll k) {
         ll res = binpow(x, k / 2);
         return res * res;
     }
-    return binpow(x, k - 1);
+    return binpow(x, k - 1) * x;
 }
