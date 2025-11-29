@@ -14,7 +14,7 @@ make
 ```
 
 ## Running tests
-You can run tests from `build/` with:
+Run from `build/`:
 ```zsh
 make test
 ```
@@ -23,3 +23,8 @@ make test
 ctest
 ```
 
+## Auto-formatting
+Run from `build/`:
+```zsh
+make format
+```
