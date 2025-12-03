@@ -3,12 +3,12 @@
 using namespace std;
 
 template <typename T>
-struct FenwickTree {
+struct FenwickTree2D {
     int n, m;
     vector<vector<T>> t;
 
     /// @note n ~ x, m ~ y
-    FenwickTree(int n, int m) : n(n), m(m), t(n + 1, vector<T>(m + 1)) {}
+    FenwickTree2D(int n, int m) : n(n), m(m), t(n + 1, vector<T>(m + 1)) {}
 
     void Add(int x, int y, int v) {
         x++, y++;

@@ -16,11 +16,11 @@ struct AddQuery {
 };
 
 template <typename T>
-struct NaiveFenwickTree {
+struct NaiveFenwickTree2D {
     int n, m;
     vector<vector<T>> t;
 
-    NaiveFenwickTree(int n, int m) : n(n), m(m), t(n, vector<T>(m)) {}
+    NaiveFenwickTree2D(int n, int m) : n(n), m(m), t(n, vector<T>(m)) {}
 
     void Add(int x, int y, int v) { t[x][y] += v; }
 
@@ -61,8 +61,8 @@ vector<variant<GetQuery, AddQuery>> generate_queries(int n, int m, int q,
 }
 
 bool random_test_compare_with_naive(int n, int m, int q, int seed) {
-    FenwickTree<int64_t> tree(n, m);
-    NaiveFenwickTree<int64_t> naive_tree(n, m);
+    FenwickTree2D<int64_t> tree(n, m);
+    NaiveFenwickTree2D<int64_t> naive_tree(n, m);
 
     default_random_engine eng(seed);
     auto queries = generate_queries(n, m, q, eng);
