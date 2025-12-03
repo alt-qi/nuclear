@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include <random>
 #include <variant>
 
@@ -21,9 +22,7 @@ struct NaiveFenwickTree {
 
     NaiveFenwickTree(int n, int m) : n(n), m(m), t(n, vector<T>(m)) {}
 
-    void Add(int x, int y, int v) {
-        t[x][y] += v;
-    }
+    void Add(int x, int y, int v) { t[x][y] += v; }
 
     T Sum(int x0, int y0, int x1, int y1) {
         T sum = 0;
@@ -36,8 +35,10 @@ struct NaiveFenwickTree {
     }
 };
 
-vector<variant<GetQuery, AddQuery>> generate_queries(int n, int m, int q, default_random_engine& eng) {
-    uniform_int_distribution<int> x_rand(0, n - 1), y_rand(0, m - 1), query_type(0, 1), add_value(0, 1e9);
+vector<variant<GetQuery, AddQuery>> generate_queries(int n, int m, int q,
+                                                     default_random_engine& eng) {
+    uniform_int_distribution<int> x_rand(0, n - 1), y_rand(0, m - 1), query_type(0, 1),
+        add_value(0, 1e9);
     std::vector<variant<GetQuery, AddQuery>> queries;
     for (int i = 0; i < q; i++) {
         if (query_type(eng)) {
@@ -46,15 +47,13 @@ vector<variant<GetQuery, AddQuery>> generate_queries(int n, int m, int q, defaul
             int y0 = y_rand(eng);
             int y1 = y_rand(eng);
 
-            if (x1 < x0)
-                swap(x1, x0);
-            if (y1 < y0)
-                swap(y1, y0);
-            queries.push_back(std::move(GetQuery { x0, y0, x1, y1 }));
+            if (x1 < x0) swap(x1, x0);
+            if (y1 < y0) swap(y1, y0);
+            queries.push_back(std::move(GetQuery{x0, y0, x1, y1}));
         } else {
             int x = x_rand(eng);
             int y = y_rand(eng);
-            queries.push_back(std::move(AddQuery { x, y, add_value(eng) }));
+            queries.push_back(std::move(AddQuery{x, y, add_value(eng)}));
         }
     }
 
@@ -70,8 +69,7 @@ bool random_test_compare_with_naive(int n, int m, int q, int seed) {
     for (const auto& query : queries) {
         if (query.index() == 0) {
             auto [x0, y0, x1, y1] = get<GetQuery>(query);
-            if (tree.Sum(x0, y0, x1, y1) != naive_tree.Sum(x0, y0, x1, y1))
-                return false;
+            if (tree.Sum(x0, y0, x1, y1) != naive_tree.Sum(x0, y0, x1, y1)) return false;
         } else {
             auto [x, y, v] = get<AddQuery>(query);
             tree.Add(x, y, v);
@@ -117,4 +115,3 @@ TEST(FenwickTree2D, TestRandomBig2) {
 TEST(FenwickTree2D, TestRandomBig3) {
     ASSERT_TRUE(random_test_compare_with_naive(1000, 1000, 300, 92399238));
 }
-
