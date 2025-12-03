@@ -2,8 +2,6 @@
 
 using namespace std;
 
-/// @attention trd-begin
-
 template <typename T>
 struct FenwickTree {
     int n, m;
