@@ -107,3 +107,18 @@ Missing, nested or unbalanced markers and empty fragments stop the build with
 the source path in the error message. Invalid configuration and missing files
 also stop the build. Run `make typst` again after editing the YAML or code.
 Document styling lives in `trd.typ`; `make clean` removes the generated PDF.
+
+## Automatic PDF releases
+
+The **Publish TRD** GitHub Actions workflow runs after every push to `main`.
+It builds the PDF with `make typst` and creates or updates the single
+[`trd-latest` release](https://github.com/alt-qi/nuclear/releases/tag/trd-latest).
+The `trd.pdf` asset is replaced on each successful build; the release tag and
+description point to the source commit used for that build.
+
+[Download the current TRD PDF](https://github.com/alt-qi/nuclear/releases/download/trd-latest/trd.pdf).
+
+To rebuild manually, open **Actions → Publish TRD → Run workflow** and select
+`main`. Both automatic and manual runs build the current `main` branch.
+The workflow uses Typst 0.15.1 and the built-in `GITHUB_TOKEN` with
+`contents: write`; no additional repository secrets are required.

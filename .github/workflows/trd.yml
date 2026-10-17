@@ -1,0 +1,62 @@
+name: Publish TRD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Serialize publication so two runs cannot replace the release asset at once.
+concurrency:
+  group: trd-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v6
+        with:
+          # Rerunning an older workflow must still publish the current TRD.
+          ref: main
+          persist-credentials: false
+
+      - name: Set up Typst
+        uses: typst-community/setup-typst@v5
+        with:
+          typst-version: '0.15.1'
+
+      - name: Build PDF
+        run: make typst
+
+      - name: Publish rolling release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: trd-latest
+        run: |
+          commit_sha=$(git rev-parse HEAD)
+          notes_file="$RUNNER_TEMP/trd-release-notes.md"
+          printf 'Automatically built from main.\n\nSource: %s/%s/commit/%s\nBuild: %s/%s/actions/runs/%s\n' \
+            "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$commit_sha" \
+            "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > "$notes_file"
+
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" build/trd.pdf --clobber
+            gh api --method PATCH "repos/$GH_REPO/git/refs/tags/$RELEASE_TAG" \
+              -f sha="$commit_sha" -F force=true
+            gh release edit "$RELEASE_TAG" \
+              --title "Latest TRD" --notes-file "$notes_file" --latest
+          else
+            gh release create "$RELEASE_TAG" build/trd.pdf \
+              --target "$commit_sha" --title "Latest TRD" \
+              --notes-file "$notes_file" --latest
+          fi
