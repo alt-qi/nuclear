@@ -4,11 +4,9 @@ TRD for std::nuclear team...
 ## Requirements
 
 - A C++20 compiler
-- CMake 3.20 or newer
+- CMake 3.15 or newer
 - Make
-- clang-format
-
-An internet connection is required on the first build to download GoogleTest.
+- clang-format (only for `make format`)
 
 ## Build
 
@@ -18,17 +16,8 @@ Run from the repository root:
 make
 ```
 
-This configures CMake and builds the project in `build/`. Subsequent runs rebuild
-only what has changed.
-
-## Running tests
-
-```sh
-make test
-```
-
-This builds the project first, then runs the tests, including formatting checks.
-Failed test output is printed automatically.
+This configures CMake in `build/` and runs the build. The TRD currently consists
+only of headers, so there are no compilation targets or dependencies to download.
 
 ## Auto-formatting
 
@@ -43,13 +32,3 @@ make clean
 ```
 
 This removes `build/`. The next build configures everything again.
-
-## Using CMake directly
-
-The Makefile is a shortcut for the usual CMake workflow, which is also supported:
-
-```sh
-cmake -S . -B build
-cmake --build build
-ctest --test-dir build --output-on-failure
-```

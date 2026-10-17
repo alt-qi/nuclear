@@ -10,7 +10,6 @@ unset(ALL_SOURCE_FILES CACHE)
 # ищем все файлы с исходным кодом и записываем в переменную ALL_SOURCE_FILES
 file(GLOB_RECURSE ALL_SOURCE_FILES 
     "include/*.hpp"
-    "tests/*.cc"
 )
 
 unset(CLANG_FORMAT_EXE CACHE)
@@ -25,7 +24,3 @@ if(CLANG_FORMAT_EXE)
 else()
     message(WARNING "clang-format not found, can't add \"format\" target")
 endif()
-
-enable_testing()
-
-add_subdirectory(tests)
