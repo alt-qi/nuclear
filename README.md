@@ -1,6 +1,22 @@
 # nuclear
 TRD for std::nuclear team...
 
+## Source layout
+
+Algorithms are grouped by topic under `include/algo/`:
+
+```text
+include/algo/
+├── data_structures/
+│   ├── fenwick_tree/
+│   ├── splay_tree/
+│   └── link_cut_tree.hpp
+└── strings/
+    └── dynamic_aho_corasick/
+```
+
+Use `snake_case` for source file and directory names.
+
 ## Requirements
 
 - A C++20 compiler
@@ -55,7 +71,7 @@ sections:
   - title: "Data structures"
     files:
       - title: "2D Fenwick tree"
-        path: "include/algo/sem2/fenwick_tree/fenwick_tree_2d.hpp"
+        path: "include/algo/data_structures/fenwick_tree/fenwick_tree_2d.hpp"
 ```
 
 Paths are relative to the repository root. Sections and files appear in YAML
