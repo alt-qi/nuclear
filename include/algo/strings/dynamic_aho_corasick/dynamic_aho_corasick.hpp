@@ -1,4 +1,3 @@
-/// &TRD_BEGIN
 #include <cstring>
 #include <queue>
 #include <string>
@@ -8,6 +7,8 @@ using namespace std;
 
 using ll = long long;
 
+/// &TRD_BEGIN
+/// @author egor
 struct AhoCorasick {
     static const int ALPHABET = 26;
     struct Node {

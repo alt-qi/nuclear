@@ -1,8 +1,9 @@
-/// &TRD_BEGIN
 #include <vector>
 
 using namespace std;
 
+/// &TRD_BEGIN
+/// @author arkadiy
 template <typename T>
 struct FenwickTree2D {
     int n, m;

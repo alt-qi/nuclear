@@ -1,13 +1,13 @@
-/// &TRD_BEGIN
-// TESTED ON https://codeforces.com/gym/103997/problem/A
-// @alt-qi
+#include <bits/stdc++.h>
 
 using namespace std;
 using i64 = int64_t;
 
+/// &TRD_BEGIN
+/// @author arkadiy
 // TODO: refactor :(
 
-ruct Node {
+struct Node {
     Node* l = nullptr;
     Node* r = nullptr;
     Node* p = nullptr;
@@ -174,5 +174,4 @@ void remove(Node* t) {
 
 // create new tree with one node
 Node* create(i64 v) { return new Node(v); }
-}
 /// &TRD_END

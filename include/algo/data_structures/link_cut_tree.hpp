@@ -1,9 +1,11 @@
-/// &TRD_BEGIN
-// TESTED ON https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
-// @alt-qi
+#include <bits/stdc++.h>
 
 using namespace std;
 using i64 = int64_t;
+
+/// &TRD_BEGIN
+/// @author arkadiy
+/// @date 2026-10-17
 
 // TODO: refactor + comments
 namespace splay {

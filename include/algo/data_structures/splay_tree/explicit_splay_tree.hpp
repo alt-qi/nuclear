@@ -1,10 +1,11 @@
-/// &TRD_BEGIN
-// UNTESTED
-// @alt-qi
+
+#include <bits/stdc++.h>
 
 using namespace std;
 using i64 = int64_t;
 
+/// &TRD_BEGIN
+/// @author arkadiy
 namespace splay {
 struct Node {
     Node *l = nullptr, *r = nullptr, *p = nullptr;
