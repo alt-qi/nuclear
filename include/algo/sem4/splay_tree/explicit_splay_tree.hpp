@@ -1,4 +1,4 @@
-/* @TRD_BEGIN */
+/// &TRD_BEGIN
 // UNTESTED
 // @alt-qi
 
@@ -121,4 +121,4 @@ pair<Node*, Node*> split(Node* t, i64 x) {
     }
 }
 }  // namespace splay
-/* @TRD_END */
+/// &TRD_END

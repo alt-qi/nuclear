@@ -6,12 +6,12 @@
   for (index, line) in source.replace("\r\n", "\n").split("\n").enumerate() {
     let marker = line.trim()
     let location = path + ":" + str(index + 1)
-    if marker == "/* @TRD_BEGIN */" {
-      assert(not inside, message: location + ": nested @TRD_BEGIN")
+    if marker == "/// &TRD_BEGIN" {
+      assert(not inside, message: location + ": nested &TRD_BEGIN")
       inside = true
       lines = ()
-    } else if marker == "/* @TRD_END */" {
-      assert(inside, message: location + ": @TRD_END without @TRD_BEGIN")
+    } else if marker == "/// &TRD_END" {
+      assert(inside, message: location + ": &TRD_END without &TRD_BEGIN")
       let code = lines.join("\n")
       assert(code.trim() != "", message: location + ": empty TRD fragment")
       fragments.push(code)
@@ -20,7 +20,7 @@
       lines.push(line)
     }
   }
-  assert(not inside, message: path + ": unclosed @TRD_BEGIN")
+  assert(not inside, message: path + ": unclosed &TRD_BEGIN")
   assert(fragments.len() > 0, message: path + ": no TRD markers found")
   fragments.join("\n\n")
 }

@@ -1,4 +1,4 @@
-/* @TRD_BEGIN */
+/// &TRD_BEGIN
 // TESTED ON https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
 // @alt-qi
 
@@ -160,4 +160,4 @@ void cut(Node* v, Node* u) {
 }
 }  // namespace lct
 }  // namespace splay
-/* @TRD_END */
+/// &TRD_END

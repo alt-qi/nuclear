@@ -63,10 +63,24 @@ order; files not listed are excluded. In each selected source file, mark the
 code to include:
 
 ```cpp
-/* @TRD_BEGIN */
-// Code included in the document.
-/* @TRD_END */
+/// &TRD_BEGIN
+/// @author someone
+/// @brief Description of the algorithm and its purpose.
+/// @date 2026-10-17
+/// @note How the code was tested.
+
+// <code included in the document>
+/// &TRD_END
 ```
+
+Every TRD fragment must include the following documentation inside its markers:
+
+- `@author`: the author of the implementation (name or handle).
+- `@brief`: a short description of the algorithm and its purpose.
+- `@date`: the date of the documented implementation in `YYYY-MM-DD` format.
+
+Write these as `///` comments without a colon after the tag, as shown above.
+This is a contribution requirement; the build does not validate these fields.
 
 Markers must occupy separate lines, optionally surrounded by whitespace.
 Multiple pairs per file are supported: their code is joined in source order
