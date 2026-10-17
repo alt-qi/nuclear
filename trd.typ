@@ -46,7 +46,7 @@
 #let sections = require-array(config.at("sections", default: none), "sections")
 
 #set document(title: title, author: "std::nuclear")
-#set page(paper: "a4", margin: 14mm, numbering: "1")
+#set page(paper: "a4", flipped: true, margin: 14mm, numbering: "1")
 #set text(font: "Libertinus Serif", size: 10pt, lang: "ru")
 #set par(leading: 0.55em)
 #set heading(numbering: "1.1")
@@ -58,6 +58,8 @@
 #v(8mm)
 #outline(title: [Содержание], depth: 2)
 #pagebreak()
+#set page(columns: 2)
+#set columns(gutter: 8mm)
 
 #for (section-index, value) in sections.enumerate() {
   let field-path = "sections[" + str(section-index) + "]"

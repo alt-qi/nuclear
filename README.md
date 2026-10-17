@@ -42,8 +42,8 @@ Install the [Typst CLI](https://github.com/typst/typst#installation) (on macOS:
 make typst
 ```
 
-The result is `build/trd.pdf`: an A4 document in one column, with a table of
-contents, numbered sections and C++ syntax highlighting. This command does not
+The result is `build/trd.pdf`: a landscape A4 document with two code columns,
+a table of contents, numbered sections and C++ syntax highlighting. This command does not
 run CMake. Typst is not required for the ordinary `make` command; no external
 Typst packages or code-generation scripts are used.
 
