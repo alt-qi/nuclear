@@ -59,7 +59,8 @@ make typst
 ```
 
 The result is `build/trd.pdf`: a landscape A4 document with two code columns,
-a table of contents, numbered sections and C++ syntax highlighting. This command does not
+a centered `std::nuclear` cover with yellow colons, a table of contents,
+numbered sections and C++ syntax highlighting. This command does not
 run CMake. Typst is not required for the ordinary `make` command; no external
 Typst packages or code-generation scripts are used.
 

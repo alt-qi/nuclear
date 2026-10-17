@@ -51,14 +51,23 @@
 #set par(leading: 0.55em)
 #set heading(numbering: "1.1")
 #set raw(tab-size: 4)
-#show raw: set text(font: "DejaVu Sans Mono", size: 8pt)
+#show raw: set text(font: "DejaVu Sans Mono", size: 6pt)
 #show raw.where(block: true): set block(breakable: true)
 
-#align(center, text(size: 22pt, weight: "bold", title))
-#v(8mm)
+#page(numbering: none)[
+  #align(center + horizon)[
+    #text(size: 48pt, weight: "bold")[std#text(fill: rgb("#ffd400"))[::]nuclear]
+  ]
+]
+#counter(page).update(1)
 #outline(title: [Содержание], depth: 2)
 #pagebreak()
-#set page(columns: 2)
+#set page(
+  columns: 2,
+  background: layout(size => align(center + horizon,
+    line(end: (0pt, size.height - 28mm), stroke: 0.3pt + rgb("#dddddd"))
+  )),
+)
 #set columns(gutter: 8mm)
 
 #for (section-index, value) in sections.enumerate() {
