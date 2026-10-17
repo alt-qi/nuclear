@@ -1,3 +1,4 @@
+/* @TRD_BEGIN */
 #include <vector>
 
 using namespace std;
@@ -34,3 +35,4 @@ struct FenwickTree2D {
         return Sum(x1, y1) - Sum(x0, y1) - Sum(x1, y0) + Sum(x0, y0);
     }
 };
+/* @TRD_END */

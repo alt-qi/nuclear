@@ -1,0 +1,16 @@
+title: "std::nuclear — TRD"
+sections:
+  - title: "Структуры данных"
+    files:
+      - title: "Двумерное дерево Фенвика"
+        path: "include/algo/sem2/fenwick_tree/fenwick_tree_2d.hpp"
+      - title: "Splay-дерево с явным ключом"
+        path: "include/algo/sem4/splay_tree/explicit_splay_tree.hpp"
+      - title: "Splay-дерево с неявным ключом"
+        path: "include/algo/sem4/splay_tree/implicit_splay_tree.hpp"
+      - title: "Link-cut tree"
+        path: "include/algo/sem4/link_cut_tree.hpp"
+  - title: "Строковые алгоритмы"
+    files:
+      - title: "Динамический Ахо — Корасик"
+        path: "include/algo/sem3/DynamicAhoCorasick/DynamicAhoCorasick.hpp"

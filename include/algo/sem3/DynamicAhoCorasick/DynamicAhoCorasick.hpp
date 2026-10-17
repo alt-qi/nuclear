@@ -1,3 +1,4 @@
+/* @TRD_BEGIN */
 #include <cstring>
 #include <queue>
 #include <string>
@@ -146,6 +147,7 @@ struct DynamicAho {
         return ans;
     }
 };
+/* @TRD_END */
 
 // добавить s
 // удалить s
