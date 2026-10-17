@@ -1,7 +1,7 @@
-#include <vector>
-#include <string>
-#include <queue>
 #include <cstring>
+#include <queue>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -10,15 +10,15 @@ using ll = long long;
 struct AhoCorasick {
     static const int ALPHABET = 26;
     struct Node {
-        int next[ALPHABET];   // переходы автомата
-        int go[ALPHABET];     // реальные переходы в боре
-        int link = 0;         // суфф ссылка
-        int up = 0;           // сжатая суфф ссылка (ведёт до ближайшего терминала)
-        int cnt = 0;          // кол-во терминальных вершин в поддереве суф ссылок
-        int pattern_ind = -1; // индекс паттерна
+        int next[ALPHABET];    // переходы автомата
+        int go[ALPHABET];      // реальные переходы в боре
+        int link = 0;          // суфф ссылка
+        int up = 0;            // сжатая суфф ссылка (ведёт до ближайшего терминала)
+        int cnt = 0;           // кол-во терминальных вершин в поддереве суф ссылок
+        int pattern_ind = -1;  // индекс паттерна
 
         Node() {
-            fill(next, next + ALPHABET,  -1);
+            fill(next, next + ALPHABET, -1);
             fill(go, go + ALPHABET, -1);
         }
     };
@@ -26,9 +26,7 @@ struct AhoCorasick {
     vector<Node> nodes;
     bool built = false;
 
-    AhoCorasick() {
-        clear();
-    }
+    AhoCorasick() { clear(); }
 
     inline void clear() {
         nodes.clear();
@@ -36,11 +34,9 @@ struct AhoCorasick {
         built = false;
     }
 
-    inline int get_char(char c) {
-        return c - 'a';
-    }
+    inline int get_char(char c) { return c - 'a'; }
 
-    void add_pattern(const string& s, int id=0) {
+    void add_pattern(const string& s, int id = 0) {
         int v = 0;
         for (char c : s) {
             int x = get_char(c);
@@ -50,7 +46,7 @@ struct AhoCorasick {
             }
             v = nodes[v].go[x];
         }
-        nodes[v].cnt++; 
+        nodes[v].cnt++;
         nodes[v].pattern_ind = id;
     }
 
@@ -67,9 +63,10 @@ struct AhoCorasick {
         }
 
         while (!q.empty()) {
-            int v = q.front(); q.pop();
+            int v = q.front();
+            q.pop();
             int u = nodes[v].link;
-            
+
             // проталкиваем терминальность
             nodes[v].up = (nodes[u].cnt > 0) ? u : nodes[u].up;
             nodes[v].cnt += nodes[u].cnt;
@@ -90,37 +87,32 @@ struct AhoCorasick {
     }
 
     // кол-во совпадений, заканчивающихся в текущем символе
-    ll count_matches(int v) const {
-        return nodes[v].cnt;
-    }
-    
-    int next_state(int v, char c) {
-        return nodes[v].next[get_char(c)];
-    }
+    ll count_matches(int v) const { return nodes[v].cnt; }
+
+    int next_state(int v, char c) { return nodes[v].next[get_char(c)]; }
 };
 
 struct DynamicAho {
     struct Layer {
         AhoCorasick aho;
         vector<string> words;
-        
+
         void clear() {
             aho.clear();
             words.clear();
         }
     };
-    vector<Layer> layers; // инвариант - если layers[i] не пуст, то в нём 2^i строк
-    
+    vector<Layer> layers;  // инвариант - если layers[i] не пуст, то в нём 2^i строк
+
     // добавление строки: O(|S| * log N)
     void add_string(const string& s) {
         vector<string> current_words = {s};
         int i = 0;
-        
+
         // Ищем свободный слой, собираем слова из занятых
         while (i < int(layers.size()) && !layers[i].words.empty()) {
             // сливаем слова на этом уровне
-            current_words.insert(current_words.end(), 
-                                 layers[i].words.begin(), 
+            current_words.insert(current_words.end(), layers[i].words.begin(),
                                  layers[i].words.end());
             layers[i].clear();
             i++;
@@ -155,7 +147,6 @@ struct DynamicAho {
     }
 };
 
-
 // добавить s
 // удалить s
 // найти кол-во вхождений строк из множества в s
@@ -172,7 +163,8 @@ struct DynamicAho {
 //         } else if (type == 2) {
 //             daho_removed.add_string(s);
 //         } else {
-//             cout << daho_added.count_total_matches(s) - daho_removed.count_total_matches(s) << "\n";
+//             cout << daho_added.count_total_matches(s) - daho_removed.count_total_matches(s) <<
+//             "\n";
 //         }
 //     }
 // }
