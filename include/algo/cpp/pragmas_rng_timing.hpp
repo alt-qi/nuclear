@@ -2,7 +2,6 @@
 /// @author egor
 /// @brief Прагмы, генератор случайных чисел и замер времени
 /// @date 2026-11-06
-/// @note
 
 #pragma GCC optimize("O3")           // Доп. оптимизации и векторизация.
 #pragma GCC optimize("unroll-loops") // Разворачивание подходящих циклов.
