@@ -1,3 +1,27 @@
+// Load Markdown packages only when a Markdown entry is included.
+#let render-markdown(path, prefix) = {
+  import "@preview/cmarker:0.1.10"
+  import "@preview/mitex:0.2.7": mitex
+  let directory = path.split("/").slice(0, -1).join("/")
+  set image(width: 100%)
+  cmarker.render(
+    read(path),
+    h1-level: 3,
+    set-document-title: false,
+    raw-typst: false,
+    label-prefix: prefix + "-",
+    math: mitex,
+    scope: (
+      image: (source, ..args) => image(
+        if type(source) == str and not source.starts-with("/") {
+          directory + "/" + source
+        } else { source },
+        ..args,
+      ),
+    ),
+  )
+}
+
 // Extract only explicitly marked, non-nested regions. Keep code indentation intact.
 #let extract-code(source, path) = {
   let inside = false
@@ -97,6 +121,10 @@
     let name = require-string(entry.at("title", default: none), field-path + ".title")
     let path = require-string(entry.at("path", default: none), field-path + ".path")
     heading(level: 2, name)
-    raw(extract-code(read(path), path), block: true, lang: "cpp")
+    if lower(path).ends-with(".md") {
+      render-markdown(path, "markdown-" + str(section-index) + "-" + str(file-index))
+    } else {
+      raw(extract-code(read(path), path), block: true, lang: "cpp")
+    }
   }
 }

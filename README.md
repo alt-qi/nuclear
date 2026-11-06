@@ -62,8 +62,10 @@ The result is `build/trd.pdf`: a landscape A4 document with two code columns,
 a centered `std::nuclear` cover with yellow colons, a table of contents,
 numbered sections and C++ syntax highlighting. Every page shows the university
 and team at the top left and its page number at the top right. This command
-does not run CMake. Typst is not required for the ordinary `make` command; no external
-Typst packages or code-generation scripts are used.
+does not run CMake. Typst is not required for the ordinary `make` command.
+Markdown entries use cmarker 0.1.10 and MiTeX 0.2.7, downloaded automatically
+from Typst Universe on the first Markdown build (internet access is required
+until the packages are cached). Code-only documents need no external packages.
 
 Edit `trd.yaml` to set the title, university, team, sections and source files.
 
@@ -79,8 +81,40 @@ sections:
 ```
 
 Paths are relative to the repository root. Sections and files appear in YAML
-order; files not listed are excluded. In each selected source file, mark the
-code to include:
+order; files not listed are excluded.
+
+### Markdown text
+
+Add `.md` files to the same `files` list to include explanatory text:
+
+```yaml
+      - title: "Fenwick tree notes"
+        path: "include/algo/data_structures/fenwick_tree/notes.md"
+      - title: "2D Fenwick tree"
+        path: "include/algo/data_structures/fenwick_tree/fenwick_tree_2d.hpp"
+```
+
+Markdown files are included in full, without TRD markers. They support paragraphs,
+headings, emphasis, lists, links, tables, blockquotes, fenced code blocks, and
+LaTeX formulas (`$...$` inline or `$$...$$` as a block). For example:
+
+```markdown
+# Complexity
+
+An update takes **logarithmic time**: $O(\log n)$.
+
+- Store partial sums in `tree`.
+- Visit the next index with `i += i & -i`.
+```
+
+The YAML title remains the document subsection; Markdown headings are nested
+under it (`#` becomes level 3). Local image paths are relative to the Markdown
+file; download remote images before including them. Raw Typst inside HTML
+comments is disabled.
+
+### Source code
+
+In each selected source file, mark the code to include:
 
 ```cpp
 /// &TRD_BEGIN
