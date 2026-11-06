@@ -66,5 +66,5 @@ sections:
         path: "include/algo/number_theory/big_integer_recheck.hpp"
   - title: "C++"
     files:
-      - title: "Прагмы, генератор случайных чисел и замер времени (ГПТ, надо проверить) RECHECK"
-        path: "include/algo/cpp/pragmas_rng_timing_recheck.hpp"
+      - title: "Прагмы, генератор случайных чисел и замер времени"
+        path: "include/algo/cpp/pragmas_rng_timing.hpp"
