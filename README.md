@@ -60,14 +60,17 @@ make typst
 
 The result is `build/trd.pdf`: a landscape A4 document with two code columns,
 a centered `std::nuclear` cover with yellow colons, a table of contents,
-numbered sections and C++ syntax highlighting. This command does not
-run CMake. Typst is not required for the ordinary `make` command; no external
+numbered sections and C++ syntax highlighting. Every page shows the university
+and team at the top left and its page number at the top right. This command
+does not run CMake. Typst is not required for the ordinary `make` command; no external
 Typst packages or code-generation scripts are used.
 
-Edit `trd.yaml` to choose the document's title, sections and source files:
+Edit `trd.yaml` to set the title, university, team, sections and source files.
 
 ```yaml
 title: "std::nuclear — TRD"
+university: "NRNU MEPhI"
+team: "std::nuclear"
 sections:
   - title: "Data structures"
     files:

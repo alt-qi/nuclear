@@ -43,10 +43,27 @@
 
 #let config = require-dictionary(yaml("trd.yaml"), "trd.yaml")
 #let title = require-string(config.at("title", default: none), "title")
+#let university = require-string(config.at("university", default: none), "university")
+#let team = require-string(config.at("team", default: none), "team")
 #let sections = require-array(config.at("sections", default: none), "sections")
 
 #set document(title: title, author: "std::nuclear")
-#set page(paper: "a4", flipped: true, margin: 14mm, numbering: "1")
+#set page(
+  paper: "a4",
+  flipped: true,
+  margin: 14mm,
+  numbering: "1",
+  number-align: top + right,
+  header: context {
+    set text(size: 9pt)
+    grid(
+      columns: (1fr, auto),
+      column-gutter: 8mm,
+      [#university — #team],
+      counter(page).display("1"),
+    )
+  },
+)
 #set text(font: "Libertinus Serif", size: 10pt, lang: "ru")
 #set par(leading: 0.55em)
 #set heading(numbering: "1.1")
@@ -54,12 +71,11 @@
 #show raw: set text(font: "DejaVu Sans Mono", size: 6pt)
 #show raw.where(block: true): set block(breakable: true)
 
-#page(numbering: none)[
+#page[
   #align(center + horizon)[
     #text(size: 48pt, weight: "bold")[std#text(fill: rgb("#ffd400"))[::]nuclear]
   ]
 ]
-#counter(page).update(1)
 #outline(title: [Содержание], depth: 2)
 #pagebreak()
 #set page(
