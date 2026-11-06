@@ -4,6 +4,9 @@
   import "@preview/mitex:0.2.7": mitex
   let directory = path.split("/").slice(0, -1).join("/")
   set image(width: 100%)
+  // Notes use their own topic labels; keep inline expressions readable.
+  set heading(numbering: none)
+  show raw.where(block: false): set text(size: 9pt)
   cmarker.render(
     read(path),
     h1-level: 3,

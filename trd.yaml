@@ -68,3 +68,11 @@ sections:
     files:
       - title: "Прагмы, генератор случайных чисел и замер времени (ГПТ, надо проверить) RECHECK"
         path: "include/algo/cpp/pragmas_rng_timing_recheck.hpp"
+  - title: "Теоретические справки"
+    files:
+      - title: "Формулы, обоснования и условия применения"
+        path: "include/notes/theory.md"
+  - title: "Идеи решения задач"
+    files:
+      - title: "Повторяющиеся приёмы московских контестов"
+        path: "include/notes/problem-solving.md"

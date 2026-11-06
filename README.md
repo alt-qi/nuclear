@@ -1,6 +1,14 @@
 # nuclear
 TRD for std::nuclear team...
 
+## Moscow contest notes
+
+[Russian theory and problem-solving notes](docs/moscow/README.md) cover the
+2016–2025 Moscow ICPC contests. The short theory and ideas are included in the
+PDF through Markdown entries in `trd.yaml`. The complete task map, source PDFs,
+provenance, open gaps and independently reconstructed arguments are kept under
+`docs/moscow/` for preparation outside the printed reference.
+
 ## Source layout
 
 Algorithms are grouped by topic under `include/algo/`:

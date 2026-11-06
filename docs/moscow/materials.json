@@ -1,0 +1,93 @@
+[
+  {
+    "year": 2016,
+    "type": "statements",
+    "path": "materials/2016-statements.pdf",
+    "url": "https://relia.uk/download.php?id=3251&r=0&type=attachments",
+    "sha256": "3749146162ef81b52f97f769d5829c9f6a18fe8434c5df989e35ed2584ea314c"
+  },
+  {
+    "year": 2017,
+    "type": "statements",
+    "path": "materials/2017-statements.pdf",
+    "url": "https://relia.uk/download.php?id=3252&r=0&type=attachments",
+    "sha256": "8c62df103fd5e525c20c89de3f6e61d208899d8f13531aca6276eb24d21a7270"
+  },
+  {
+    "year": 2018,
+    "type": "statements",
+    "path": "materials/2018-statements.pdf",
+    "url": "https://relia.uk/download.php?id=3253&r=0&type=attachments",
+    "sha256": "ce6c84ea2286f0db513b32116f6db57c23c8ac5fec8ff975cec9fe2a31c86e19"
+  },
+  {
+    "year": 2019,
+    "type": "statements",
+    "path": "materials/2019-statements.pdf",
+    "url": "https://relia.uk/download.php?id=1790&r=0&type=attachments",
+    "sha256": "c2e3b862e579054fe06e0cc226af9b0cf75b660ac37897dcad2db44d1562d5ae"
+  },
+  {
+    "year": 2020,
+    "type": "statements",
+    "path": "materials/2020-statements.pdf",
+    "url": "https://relia.uk/download.php?id=1791&r=0&type=attachments",
+    "sha256": "14daaeb66511beac05570a6744252236ec08b7fdd61fa22c40f811d46e9e3e7c"
+  },
+  {
+    "year": 2021,
+    "type": "statements",
+    "path": "materials/2021-statements.pdf",
+    "url": "https://relia.uk/download.php?id=1792&r=0&type=attachments",
+    "sha256": "6ed30b2d63ecb3b194baa8906ee2f2b570bfa414b4ec55da2467acc78ce7e7b6"
+  },
+  {
+    "year": 2022,
+    "type": "statements",
+    "path": "materials/2022-statements.pdf",
+    "url": "https://relia.uk/download.php?id=1329&r=0&type=attachments",
+    "sha256": "bdb19a1f9a6740a14f888334c9238af0d4ce72a30cf6f9955d596e05a56fcf7d"
+  },
+  {
+    "year": 2022,
+    "type": "tutorial",
+    "path": "materials/2022-tutorial.pdf",
+    "url": "https://relia.uk/download.php?id=1329&r=1&type=attachments",
+    "sha256": "307c26194cc1a376fa2e8241fa8f55ed3edd4e6eb546ae13da6f6161218d4c60"
+  },
+  {
+    "year": 2023,
+    "type": "statements",
+    "path": "materials/2023-statements.pdf",
+    "url": "https://relia.uk/download.php?id=2068&r=0&type=attachments",
+    "sha256": "ca950d0272817695b4016bd78482b909fdcb44ca1e0b9cf3b562858aafde3ab8"
+  },
+  {
+    "year": 2024,
+    "type": "statements",
+    "path": "materials/2024-statements.pdf",
+    "url": "https://relia.uk/download.php?id=2620&r=0&type=attachments",
+    "sha256": "2729fc790c875263c9c4174032241e8558aeb1c73896f0c99833c5ba07f4ff41"
+  },
+  {
+    "year": 2024,
+    "type": "tutorial",
+    "path": "materials/2024-tutorial.pdf",
+    "url": "https://relia.uk/download.php?id=2620&r=1&type=attachments",
+    "sha256": "8cc37473576acfa9d8839f455f2682f1aa71618adad7d706f70f67da1d44c224"
+  },
+  {
+    "year": 2025,
+    "type": "statements",
+    "path": "materials/2025-statements.pdf",
+    "url": "https://relia.uk/download.php?id=4614&r=0&type=attachments",
+    "sha256": "eb1005565734ad323a838f2f28e2b9957f59bac939cbf211d13a58a9c76a821b"
+  },
+  {
+    "year": 2025,
+    "type": "tutorial",
+    "path": "materials/2025-tutorial.pdf",
+    "url": "https://relia.uk/download.php?id=4614&r=1&type=attachments",
+    "sha256": "56ef4eafba80526c2f1aedad59e799fa4c88bea042c35d4a39ce6ba4ae795fcc"
+  }
+]
