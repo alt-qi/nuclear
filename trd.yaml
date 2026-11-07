@@ -26,7 +26,7 @@ sections:
       #   path: "include/algo/strings/dynamic_aho_corasick/dynamic_aho_corasick.hpp"
       - title: "Суффиксный автомат"
         path: "include/algo/strings/suffix_automaton.hpp"
-      # - title: "Суффиксное дерево RECHECK"
+      # - title: "Суффиксное дерево"
       #   path: "include/algo/strings/suffix_tree.hpp"
       - title: "Суффиксный массив и LCP"
         path: "include/algo/strings/suffix_array.hpp"
@@ -38,7 +38,7 @@ sections:
         path: "include/algo/strings/prefix_function.hpp"
   - title: "Геометрия"
     files:
-      # - title: "Точка и векторы RECHECK"
+      # - title: "Точка и векторы"
       #   path: "include/algo/geometry/point.hpp"
       - title: "Выпуклая оболочка Грэхема O(NlogN)"
         path: "include/algo/geometry/graham.hpp"
