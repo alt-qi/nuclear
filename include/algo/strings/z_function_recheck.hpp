@@ -1,9 +1,6 @@
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
+/// @author unknown
 /// @brief Z-функция RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 vector<int> zfunc(const string& s) {
     int n = s.size();
     vector<int> z(n);

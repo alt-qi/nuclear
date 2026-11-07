@@ -6,11 +6,8 @@ inline bool eq(ld a, ld b);
 #endif
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Точка и векторы RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
+/// @author unknown
+/// @brief Точка и векторы.
 const ld pi = acos(-1);
 const ld eps = 1e-12;
 

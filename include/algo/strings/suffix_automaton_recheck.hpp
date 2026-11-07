@@ -1,19 +1,16 @@
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
+/// @author unknown
 /// @brief Суффиксный автомат RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 struct sufauto {
     vector<map<char, ll>> next;
     vector<ll> len, link;
- 
+
     vector<ll> cnt;
- 
+
     sufauto() {
         node();
     }
- 
+
     int node(){
         next.emplace_back();
         len.push_back(0);
@@ -21,7 +18,7 @@ struct sufauto {
         cnt.push_back(0); // cnt[i] = size(endpos i)
         return (int)next.size() - 1;
     }
- 
+
     int add(int last, char ch) {
         int new_node = node();
         int sz = len.size();
@@ -33,13 +30,13 @@ struct sufauto {
                 next[p][ch] = new_node;
                 continue;
             }
- 
+
             int q = next[p][ch];
             if (len[p] + 1 == len[q]) {
                 link[new_node] = q;
                 break;
             }
- 
+
             int clone_q = node();
             link[clone_q] = link[q];
             link[q] = clone_q;
@@ -51,17 +48,17 @@ struct sufauto {
             }
             break;
         }
- 
+
         return new_node;
     }
- 
+
     void dfs_cnt(int v, vector<vector<ll>>& gr) {
         for (int u : gr[v]) dfs_cnt(u, gr);
         if (link[v] == -1) return;
         cnt[link[v]] += cnt[v];
     }
-    
-    
+
+
     void buildCnt() {
         int sz = len.size();
         vector<vector<ll>> gr(sz);

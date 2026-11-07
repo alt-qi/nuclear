@@ -4,11 +4,8 @@ using namespace std;
 #endif
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Min Cost Max Flow (MCMF) RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
+/// @author unknown
+/// @brief Min Cost Max Flow (MCMF).
 struct MCMF {
     using ll = long long;
     static const ll INF = (1LL << 61);
@@ -33,7 +30,7 @@ struct MCMF {
     }
 
     void init(int _n) {
-        n = _n + 10;             // небольшой запас, как у тебя
+        n = _n + 10;
         g.assign(n, {});
         e.clear();
         potential.assign(n, 0);

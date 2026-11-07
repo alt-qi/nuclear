@@ -1,10 +1,5 @@
 #pragma once
 
-/// &TRD_BEGIN
-/// @author OpenAI Codex
-/// @brief Свёртка целых чисел через комплексную FFT с округлением.
-/// @date 2026-11-07
-
 #include <cmath>
 #include <complex>
 #include <cstddef>
@@ -13,6 +8,9 @@
 #include <utility>
 #include <vector>
 
+/// &TRD_BEGIN
+/// @author igor
+/// @brief Свёртка целых чисел через комплексную FFT с округлением.
 namespace fft_detail {
 using Complex = std::complex<long double>;
 

@@ -5,11 +5,8 @@ using ll = long long;
 #endif
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
+/// @author unknown
 /// @brief Суффиксный массив и LCP RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 struct SuffixArray {
     int n;
     string s;

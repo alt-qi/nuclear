@@ -1,5 +1,5 @@
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
+/// @author unknown
 /// @brief Ordered set/map RECHECK.
 /// @date 2026-11-06
 /// @note Дата переноса; код из приложенного файла без изменений.

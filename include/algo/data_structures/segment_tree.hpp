@@ -1,9 +1,3 @@
-/// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Дерево отрезков с массовыми операциями RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 #include <bits/stdc++.h>
 #define all(v) (v).begin(), (v).end()
 #define rall(v) (v).rbegin(), (v).rend()
@@ -14,6 +8,8 @@ using u64 = uint64_t;
 using f128 = long double;
 using i128 = __int128_t;
 
+/// &TRD_BEGIN
+/// @author unknown
 struct SegmentTree {
     int size = 1;
     vector<i64> tree, buf;

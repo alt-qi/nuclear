@@ -6,11 +6,8 @@ constexpr int N = 16;
 #endif
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief HLD RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
+/// @author unknown
+/// @brief HLD.
 int n, q;
 vector<int> g[N];
 ll vertex_value[N];
@@ -20,28 +17,28 @@ int par[N];
 void calc_sz(int v, int p_node = 0) {
     par[v] = p_node;
     sz[v] = 1;
-    
+
     int heavy_child_candidate = -1;
     int max_sz_child = 0;
 
     for (int i = 0; i < g[v].size(); ++i) {
         int& u = g[v][i];
         if (u == p_node) continue;
-        
+
         calc_sz(u, v);
         sz[v] += sz[u];
-        
+
         if (sz[u] > max_sz_child) {
             max_sz_child = sz[u];
         }
     }
-    
+
     for (int i = 0; i < g[v].size(); ++i) {
         int u = g[v][i];
         if (u == p_node) continue;
         if (sz[u] == max_sz_child && max_sz_child > 0) {
             swap(g[v][0], g[v][i]);
-            break; 
+            break;
         }
     }
     if (!g[v].empty() && g[v][0] == p_node) {
@@ -148,7 +145,7 @@ bool ancestor(int v_anc, int u_desc) {
 
 ll get_way_value(int cur_a, int cur_b) {
     ll result = 0;
-    
+
     int original_a = cur_a;
     int original_b = cur_b;
 
@@ -157,7 +154,7 @@ ll get_way_value(int cur_a, int cur_b) {
         result += get(1, 1, n + 1, tin[head[cur_a]], tin[cur_a]).value;
         cur_a = par[head[cur_a]];
     }
-    
+
     while (!ancestor(head[cur_b], original_a)) {
         if (cur_b == 0) break;
         result += get(1, 1, n + 1, tin[head[cur_b]], tin[cur_b]).value;
@@ -168,7 +165,7 @@ ll get_way_value(int cur_a, int cur_b) {
         swap(cur_a, cur_b);
     }
     result += get(1, 1, n + 1, tin[cur_a], tin[cur_b]).value;
-    
+
     return result;
 }
 

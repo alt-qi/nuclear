@@ -1,9 +1,6 @@
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Линейное решето Эратосфена O(n) RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
+/// @author unknown
+/// @brief Линейное решето Эратосфена O(n).
 struct linear_sieve {
     int n = 0;
     vector<int> lp, primes;

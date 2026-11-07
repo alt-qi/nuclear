@@ -1,13 +1,11 @@
 #pragma once
 
-/// &TRD_BEGIN
-/// @author OpenAI Codex
-/// @brief Объединение сравнений с произвольными положительными модулями.
-/// @date 2026-11-07
-
 #include <cassert>
 #include <limits>
 
+/// &TRD_BEGIN
+/// @author igor
+/// @brief Объединение сравнений с произвольными положительными модулями.
 enum class CrtStatus { ok, inconsistent, overflow };
 
 struct CrtResult {

@@ -8,11 +8,8 @@ constexpr ld EPS = 1e-12L;
 #endif
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Выпуклая оболочка Грэхема O(NlogN) RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
+/// @author unknown
+/// @brief Выпуклая оболочка Грэхема O(NlogN).
 struct r
 {
     ld x, y;
@@ -36,7 +33,7 @@ vector<r> graham(vector<r> points) {
     sort(points.begin(), points.end(), [&] (r a, r b) {
         return abs((a - p0) ^ (b - p0)) < EPS && (a - p0).len() > (b - p0).len() || ((a - p0) ^ (b - p0)) > 0;
     });
-    
+
     vector<r> hull;
     for (r p : points) {
         while (hull.size() >= 2) {
@@ -44,7 +41,7 @@ vector<r> graham(vector<r> points) {
             r last_vec = hull.back() - hull[hull.size() - 2];
             if ((last_vec ^ new_vec) < 0 || abs(last_vec ^ new_vec) < EPS)
                 hull.pop_back();
-            else 
+            else
                 break;
         }
         hull.push_back(p);

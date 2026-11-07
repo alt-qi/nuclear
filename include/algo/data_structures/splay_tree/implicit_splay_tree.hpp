@@ -5,8 +5,6 @@ using i64 = int64_t;
 
 /// &TRD_BEGIN
 /// @author arkadiy
-// TODO: refactor :(
-
 struct Node {
     Node* l = nullptr;
     Node* r = nullptr;

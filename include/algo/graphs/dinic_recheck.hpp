@@ -1,12 +1,9 @@
-/// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Диниц O(V²E) RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 #include <bits/stdc++.h>
 using namespace std;
 
+/// &TRD_BEGIN
+/// @author unknown
+/// @brief Диниц O(V²E).
 struct Dinic {
     using ll = long long;
 
