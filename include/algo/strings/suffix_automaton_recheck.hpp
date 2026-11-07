@@ -2,7 +2,7 @@
 /// @author Не указан в исходном файле
 /// @brief Суффиксный автомат RECHECK.
 /// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
+/// @note Исправлены построение ссылок и подсчёт вхождений.
 
 struct sufauto {
     vector<map<char, ll>> next;
@@ -46,8 +46,10 @@ struct sufauto {
             link[new_node] = clone_q;
             len[clone_q] = len[p] + 1;
             next[clone_q] = next[q];
-            for (; p != -1 && next[p][ch] == q; p = link[p]) {
-                next[p][ch] = clone_q;
+            for (; p != -1; p = link[p]) {
+                auto it = next[p].find(ch);
+                if (it == next[p].end() || it->second != q) break;
+                it->second = clone_q;
             }
             break;
         }
@@ -66,7 +68,7 @@ struct sufauto {
         int sz = len.size();
         vector<vector<ll>> gr(sz);
         for (int i = 1; i < sz; ++i) gr[link[i]].push_back(i); // дерево суф ссылок
-        dfs(0, gr, dp);
+        dfs_cnt(0, gr);
     }
 };
 /// &TRD_END

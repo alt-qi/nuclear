@@ -2,11 +2,11 @@
 /// @author Не указан в исходном файле
 /// @brief Min Cost Max Flow (MCMF) RECHECK.
 /// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
+/// @note INF объявлена constexpr для сборки без оптимизаций.
 
 struct MCMF {
     using ll = long long;
-    static const ll INF = (1LL << 61);
+    static constexpr ll INF = (1LL << 61);
 
     struct Edge {
         int from, to;

@@ -66,9 +66,9 @@ Install the [Typst CLI](https://github.com/typst/typst#installation) (on macOS:
 make typst
 ```
 
-The result is `build/trd.pdf`: a landscape A4 document with two code columns,
-a centered `std::nuclear` cover with yellow colons, a table of contents,
-numbered sections and C++ syntax highlighting. Every page shows the university
+The result is `build/trd.pdf`, a landscape A4 document that opens with the
+table of contents. It uses two code columns, numbered sections and C++ syntax
+highlighting. Every page shows the university
 and team at the top left and its page number at the top right. This command
 does not run CMake. Typst is not required for the ordinary `make` command.
 Markdown entries use cmarker 0.1.10 and MiTeX 0.2.7, downloaded automatically
@@ -153,6 +153,22 @@ Missing, nested or unbalanced markers and empty fragments stop the build with
 the source path in the error message. Invalid configuration and missing files
 also stop the build. Run `make typst` again after editing the YAML or code.
 Document styling lives in `trd.typ`; `make clean` removes the generated PDF.
+
+For a compact usage example, put a function in a sibling `*_usage.hpp` file
+and set `example` on the same YAML entry as its implementation.
+
+```yaml
+      - title: "DSU"
+        path: "include/algo/data_structures/dsu.hpp"
+        example: "include/algo/data_structures/dsu_usage.hpp"
+```
+
+The build prints the example's marked fragment below the implementation.
+Keep includes for standalone compilation outside the example's markers.
+Aim for ten lines or fewer, including comments about setup or indexing.
+To run an example, include its header in a small C++20 program and return
+`example_dsu() ? 0 : 1` from `main` (use the function from the selected file).
+Compile the examples separately since some of the older templates use global names.
 
 ## Automatic PDF releases
 

@@ -97,14 +97,9 @@
 #set raw(tab-size: 4)
 #show raw: set text(font: "DejaVu Sans Mono", size: 6pt)
 #show raw.where(block: true): set block(breakable: true)
+#show raw.where(block: true): set par(leading: 0.36em)
 
-#page[
-  #align(center + horizon)[
-    #text(size: 48pt, weight: "bold")[std#text(fill: rgb("#ffd400"))[::]nuclear]
-  ]
-]
-#outline(title: [Содержание], depth: 2)
-#pagebreak()
+#outline(title: [std#text(fill: rgb("#d49c00"))[::]nuclear · Содержание], depth: 2)
 #set page(
   columns: 2,
   background: layout(size => align(center + horizon,
@@ -128,6 +123,12 @@
       render-markdown(path, "markdown-" + str(section-index) + "-" + str(file-index))
     } else {
       raw(extract-code(read(path), path), block: true, lang: "cpp")
+      let example = entry.at("example", default: none)
+      if example != none {
+        let example-path = require-string(example, field-path + ".example")
+        let code = extract-code(read(example-path), example-path)
+        block(breakable: false, raw("// Пример использования\n" + code, block: true, lang: "cpp"))
+      }
     }
   }
 }

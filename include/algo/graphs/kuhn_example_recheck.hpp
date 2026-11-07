@@ -1,8 +1,8 @@
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
-/// @brief Максимальное паросочетание (Кун, пример с main) RECHECK.
+/// @brief Максимальное паросочетание (Кун с очисткой used) RECHECK.
 /// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
+/// @note Порядок вызовов показан в kuhn_example_recheck_usage.hpp.
 
 int n, k;
 vector < vector<int> > g;
@@ -20,19 +20,5 @@ bool try_kuhn (int v) {
 		}
 	}
 	return false;
-}
- 
-int main() {
-	... чтение графа ...
- 
-	mt.assign (k, -1);
-	for (int v=0; v<n; ++v) {
-		used.assign (n, false);
-		try_kuhn (v);
-	}
- 
-	for (int i=0; i<k; ++i)
-		if (mt[i] != -1)
-			printf ("%d %d\n", mt[i]+1, i+1);
 }
 /// &TRD_END
