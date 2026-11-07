@@ -64,7 +64,7 @@ sections:
         path: "include/algo/number_theory/linear_sieve_recheck.hpp"
       - title: "Проверка на простоту Миллера — Рабина RECHECK"
         path: "include/algo/number_theory/miller_rabin_recheck.hpp"
-      - title: "Длинная арифметика (ГПТ) RECHECK"
+      - title: "Длинная арифметика RECHECK"
         path: "include/algo/number_theory/big_integer_recheck.hpp"
       - title: "Простые числа"
         path: "include/algo/number_theory/prime_numbers.hpp"

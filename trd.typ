@@ -99,12 +99,17 @@
 #show raw.where(block: true): set block(breakable: true)
 
 #page[
-  #align(center + horizon)[
+  #align(center)[
     #text(size: 48pt, weight: "bold")[std#text(fill: rgb("#ffd400"))[::]nuclear]
   ]
+  #v(6mm)
+  #heading(outlined: false, numbering: none)[Содержание]
+  #block(height: 100mm)[
+    #columns(2, gutter: 8mm)[
+      #outline(title: none, depth: 2)
+    ]
+  ]
 ]
-#outline(title: [Содержание], depth: 2)
-#pagebreak()
 #set page(
   columns: 2,
   background: layout(size => align(center + horizon,
