@@ -27,29 +27,36 @@
 
 // Extract only explicitly marked, non-nested regions. Keep code indentation intact.
 #let extract-code(source, path) = {
-  let inside = false
+  let open = none
   let lines = ()
   let fragments = ()
+  let example = none
   for (index, line) in source.replace("\r\n", "\n").split("\n").enumerate() {
     let marker = line.trim()
     let location = path + ":" + str(index + 1)
-    if marker == "/// &TRD_BEGIN" {
-      assert(not inside, message: location + ": nested &TRD_BEGIN")
-      inside = true
+    if marker in ("/// &TRD_BEGIN", "/// &TRD_EXAMPLE_BEGIN") {
+      assert(open == none, message: location + ": nested TRD marker")
+      open = marker
       lines = ()
-    } else if marker == "/// &TRD_END" {
-      assert(inside, message: location + ": &TRD_END without &TRD_BEGIN")
+    } else if marker in ("/// &TRD_END", "/// &TRD_EXAMPLE_END") {
+      assert(open != none and marker == open.replace("_BEGIN", "_END"),
+        message: location + ": unmatched TRD marker")
       let code = lines.join("\n")
       assert(code.trim() != "", message: location + ": empty TRD fragment")
-      fragments.push(code)
-      inside = false
-    } else if inside {
+      if marker == "/// &TRD_EXAMPLE_END" {
+        assert(example == none, message: location + ": multiple usage examples")
+        example = code
+      } else {
+        fragments.push(code)
+      }
+      open = none
+    } else if open != none {
       lines.push(line)
     }
   }
-  assert(not inside, message: path + ": unclosed &TRD_BEGIN")
+  assert(open == none, message: path + ": unclosed TRD marker")
   assert(fragments.len() > 0, message: path + ": no TRD markers found")
-  fragments.join("\n\n")
+  (implementation: fragments.join("\n\n"), example: example)
 }
 
 #let require-string(value, field) = {
@@ -122,12 +129,10 @@
     if lower(path).ends-with(".md") {
       render-markdown(path, "markdown-" + str(section-index) + "-" + str(file-index))
     } else {
-      raw(extract-code(read(path), path), block: true, lang: "cpp")
-      let example = entry.at("example", default: none)
-      if example != none {
-        let example-path = require-string(example, field-path + ".example")
-        let code = extract-code(read(example-path), example-path)
-        block(breakable: false, raw("// Пример использования\n" + code, block: true, lang: "cpp"))
+      let code = extract-code(read(path), path)
+      raw(code.implementation, block: true, lang: "cpp")
+      if code.example != none {
+        block(breakable: false, raw(code.example, block: true, lang: "cpp"))
       }
     }
   }

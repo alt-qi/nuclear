@@ -1,3 +1,12 @@
+#ifdef NUCLEAR_TRD_EXAMPLE
+#include <algorithm>
+#include <cmath>
+#include <vector>
+using namespace std;
+using ld = long double;
+constexpr ld EPS = 1e-12L;
+#endif
+
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
 /// @brief Выпуклая оболочка Грэхема O(NlogN) RECHECK.
@@ -44,3 +53,11 @@ vector<r> graham(vector<r> points) {
     return hull;
 }
 /// &TRD_END
+
+/// &TRD_EXAMPLE_BEGIN
+// Пример использования
+inline bool example_graham() {
+    auto hull = graham({{0, 0}, {4, 0}, {0, 4}, {1, 1}});
+    return hull.size() == 3;  // (1, 1) внутри
+}
+/// &TRD_EXAMPLE_END

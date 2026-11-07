@@ -1,3 +1,9 @@
+#ifdef NUCLEAR_TRD_EXAMPLE
+#include <vector>
+using std::vector;
+using ll = long long;
+#endif
+
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
 /// @brief Дерево Фенвика RECHECK.
@@ -23,3 +29,12 @@ struct Fenwick {
    }
 };
 /// &TRD_END
+
+/// &TRD_EXAMPLE_BEGIN
+// Пример использования
+inline bool example_fenwick() {
+    Fenwick f(4);
+    f.add(1, 3); f.add(3, 5);  // индексы с единицы
+    return f.sumRange(2, 4) == 5;  // обе границы включены
+}
+/// &TRD_EXAMPLE_END

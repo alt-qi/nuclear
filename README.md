@@ -135,7 +135,7 @@ In each selected source file, mark the code to include:
 /// &TRD_END
 ```
 
-Every TRD fragment must include the following documentation inside its markers:
+Every implementation fragment must include the following documentation inside its markers:
 
 - `@author`: the author of the implementation (name or handle).
 - `@brief`: a short description of the algorithm and its purpose.
@@ -154,21 +154,25 @@ the source path in the error message. Invalid configuration and missing files
 also stop the build. Run `make typst` again after editing the YAML or code.
 Document styling lives in `trd.typ`; `make clean` removes the generated PDF.
 
-For a compact usage example, put a function in a sibling `*_usage.hpp` file
-and set `example` on the same YAML entry as its implementation.
+Put the usage function at the end of the implementation header. Mark it so
+the PDF keeps the example together below the implementation.
 
-```yaml
-      - title: "DSU"
-        path: "include/algo/data_structures/dsu.hpp"
-        example: "include/algo/data_structures/dsu_usage.hpp"
+```cpp
+/// &TRD_EXAMPLE_BEGIN
+// Пример использования
+inline bool example_dsu() {
+    DSU groups(3);
+    groups.unite(0, 1);
+    return groups.same(0, 1) && !groups.same(0, 2);
+}
+/// &TRD_EXAMPLE_END
 ```
 
-The build prints the example's marked fragment below the implementation.
-Keep includes for standalone compilation outside the example's markers.
 Aim for ten lines or fewer, including comments about setup or indexing.
-To run an example, include its header in a small C++20 program and return
-`example_dsu() ? 0 : 1` from `main` (use the function from the selected file).
-Compile the examples separately since some of the older templates use global names.
+To run an example, define `NUCLEAR_TRD_EXAMPLE`, include the implementation
+header in a small C++20 program, then call the example function from `main`.
+The flag supplies setup for older snippets that expect the caller to define
+types, constants or graph sizes. Compile each example in its own program.
 
 ## Automatic PDF releases
 

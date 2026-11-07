@@ -1,3 +1,9 @@
+#ifdef NUCLEAR_TRD_EXAMPLE
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+#endif
+
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
 /// @brief Суффиксный автомат RECHECK.
@@ -72,3 +78,15 @@ struct sufauto {
     }
 };
 /// &TRD_END
+
+/// &TRD_EXAMPLE_BEGIN
+// Пример использования
+inline bool example_suffix_automaton() {
+    sufauto sam;
+    int last = 0;
+    for (char c : std::string("ababa")) last = sam.add(last, c);
+    sam.buildCnt();  // один раз после построения
+    int v = sam.next[0].at('a');
+    return sam.cnt[sam.next[v].at('b')] == 2;  // вхождения "ab"
+}
+/// &TRD_EXAMPLE_END
