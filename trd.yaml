@@ -63,7 +63,9 @@ sections:
       - title: "Проверка на простоту Миллера — Рабина RECHECK"
         path: "include/algo/number_theory/miller_rabin_recheck.hpp"
       - title: "Длинная арифметика (ГПТ) RECHECK"
-        path: "include/algo/number_theory/big_integer_recheck.hpp"
+        path: "include/algo/number_theory/big_integer.hpp"
+      - title: "Простые числа"
+        path: "include/algo/number_theory/prime_numbers.hpp"
   - title: "C++"
     files:
       - title: "Прагмы, генератор случайных чисел и замер времени"
