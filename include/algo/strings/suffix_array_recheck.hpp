@@ -1,3 +1,9 @@
+#ifdef NUCLEAR_TRD_EXAMPLE
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+#endif
+
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
 /// @brief Суффиксный массив и LCP RECHECK.
@@ -73,5 +79,13 @@ vector<ll> build_lcp(const string& s, const vector<ll>& sa) {
         if (k) --k;
     }
     return lcp;
+}
+
+// Пример использования
+inline bool example_suffix_array() {
+    std::string s = "aba";  // непустая строка без байта 0
+    SuffixArray suffixes(s);
+    return suffixes.sa == std::vector<ll>{2, 0, 1}
+        && build_lcp(s, suffixes.sa) == std::vector<ll>{1, 0};
 }
 /// &TRD_END

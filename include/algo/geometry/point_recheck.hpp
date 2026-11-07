@@ -1,3 +1,10 @@
+#ifdef NUCLEAR_TRD_EXAMPLE
+#include <cmath>
+using ld = long double;
+using ll = long long;
+inline bool eq(ld a, ld b);
+#endif
+
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
 /// @brief Точка и векторы RECHECK.
@@ -51,4 +58,15 @@ struct point {
         return point(x * val, y * val);
     }
 };
+
+// Пример использования
+inline bool example_point() {
+    point a(0, 0), b(3, 0), c(0, 4);
+    point ab = b - a, ac = c - a;
+    return (ab % ac) == 12 && ab * ac == 0;  // поворот влево, угол 90°
+}
 /// &TRD_END
+
+#ifdef NUCLEAR_TRD_EXAMPLE
+inline bool eq(ld a, ld b) { return std::abs(a - b) < eps; }
+#endif
