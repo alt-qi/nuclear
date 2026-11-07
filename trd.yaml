@@ -38,8 +38,8 @@ sections:
         path: "include/algo/strings/prefix_function_recheck.hpp"
   - title: "Геометрия"
     files:
-      - title: "Точка и векторы RECHECK"
-        path: "include/algo/geometry/point_recheck.hpp"
+      # - title: "Точка и векторы RECHECK"
+      #   path: "include/algo/geometry/point_recheck.hpp"
       - title: "Выпуклая оболочка Грэхема O(NlogN) RECHECK"
         path: "include/algo/geometry/graham_recheck.hpp"
   - title: "Графы"
