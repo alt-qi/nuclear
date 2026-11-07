@@ -4,6 +4,8 @@ team: "std::nuclear"
 sections:
   - title: "Структуры данных"
     files:
+      - title: "DSU — система непересекающихся множеств"
+        path: "include/algo/data_structures/dsu.hpp"
       - title: "Двумерное дерево Фенвика"
         path: "include/algo/data_structures/fenwick_tree/fenwick_tree_2d.hpp"
       - title: "Splay-дерево с явным ключом"
@@ -56,8 +58,12 @@ sections:
         path: "include/algo/graphs/kuhn_example_recheck.hpp"
   - title: "Теория чисел"
     files:
-      - title: "Расширенный НОД и диофантово уравнение RECHECK"
-        path: "include/algo/number_theory/extended_gcd_recheck.hpp"
+      - title: "Расширенный алгоритм Евклида"
+        path: "include/algo/number_theory/extended_gcd.hpp"
+      - title: "Китайская теорема об остатках"
+        path: "include/algo/number_theory/crt.hpp"
+      - title: "Свёртка целых чисел через FFT"
+        path: "include/algo/number_theory/convolution_fft.hpp"
       - title: "Линейное решето Эратосфена O(n) RECHECK"
         path: "include/algo/number_theory/linear_sieve_recheck.hpp"
       - title: "Проверка на простоту Миллера — Рабина RECHECK"
