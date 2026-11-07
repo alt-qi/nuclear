@@ -5,9 +5,6 @@ using i64 = int64_t;
 
 /// &TRD_BEGIN
 /// @author arkadiy
-/// @date 2026-10-17
-
-// TODO: refactor + comments
 namespace splay {
 const int inf = 1e9;
 struct Node {

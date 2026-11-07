@@ -1,15 +1,12 @@
-/// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Декартово дерево (явное/неявное, sum + size) RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 #include <bits/stdc++.h>
 using namespace std;
 
 using ll = long long;
 using ull = unsigned long long;
 
+/// &TRD_BEGIN
+/// @author unknown
+/// @brief Декартово дерево (явное/неявное, sum + size).
 struct treap {
     struct node {
         ll x, sum, sz; ull y;

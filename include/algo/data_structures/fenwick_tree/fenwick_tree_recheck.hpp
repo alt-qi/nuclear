@@ -5,11 +5,7 @@ using ll = long long;
 #endif
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Дерево Фенвика RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
+/// @author unknown
 struct Fenwick {
    int n;
    vector<ll> f;
@@ -28,11 +24,4 @@ struct Fenwick {
        return sumPrefix(r)-sumPrefix(l-1);
    }
 };
-
-// Пример использования
-inline bool example_fenwick() {
-    Fenwick f(4);
-    f.add(1, 3); f.add(3, 5);  // индексы с единицы
-    return f.sumRange(2, 4) == 5;  // обе границы включены
-}
 /// &TRD_END

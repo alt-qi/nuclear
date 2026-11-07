@@ -1,9 +1,6 @@
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
+/// @author unknown
 /// @brief Префикс-функция RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 vector<int> preffunc(const string& s) {
     int n = s.size();
     vector<int> p(n);

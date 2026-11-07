@@ -1,12 +1,10 @@
-/// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Длинная арифметика (ГПТ) RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
 
 #include <bits/stdc++.h>
 using namespace std;
 
+/// &TRD_BEGIN
+/// @author unknown
+/// @brief Длинная арифметика RECHECK.
 class Big {
     static constexpr int BASE = 1'000'000'000;
     vector<int> d;  // Младший блок первым. Пустой вектор означает 0.

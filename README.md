@@ -1,6 +1,14 @@
 # nuclear
 TRD for std::nuclear team...
 
+## Moscow ICPC notes
+
+The PDF includes the [theory notes](include/notes/theory.md) and
+[problem-solving patterns](include/notes/problem-solving.md).
+[Advanced topics](docs/moscow/advanced-theory.md) are available for preparation.
+The [contest archive and sources](https://github.com/alt-qi/nuclear/tree/trd/moscow-2016-2025/docs/moscow)
+cover the 2016–2025 Moscow ICPC contests.
+
 ## Source layout
 
 Algorithms are grouped by topic under `include/algo/`:

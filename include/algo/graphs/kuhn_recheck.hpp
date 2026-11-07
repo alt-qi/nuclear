@@ -6,11 +6,8 @@ int n = 0, m = 0;
 #endif
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief Максимальное паросочетание (Кун с таймером) RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
+/// @author unknown
+/// @brief Максимальное паросочетание (Кун с таймером).
 vector<int> g[N]; int mt[N];
 int last_version[N]; int timer = 0;
 bool try_Kuhn(int v) {

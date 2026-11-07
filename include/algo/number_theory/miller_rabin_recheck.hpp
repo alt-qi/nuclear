@@ -1,9 +1,6 @@
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
+/// @author unknown
 /// @brief Проверка на простоту Миллера — Рабина RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
-
 // Быстрое возведение в степень по модулю с защитой от переполнения
 long long power(long long base, long long exp, long long mod) {
     long long res = 1;
@@ -30,7 +27,7 @@ bool is_prime(long long n) {
     // Свидетели, достаточные для детерминированной проверки всех long long
     for (long long a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
         if (n == a) return true;
-        
+
         long long x = power(a, d, n);
         if (x == 1 || x == n - 1) continue;
 
