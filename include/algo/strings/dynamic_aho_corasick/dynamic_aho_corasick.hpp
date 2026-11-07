@@ -161,7 +161,6 @@ inline bool example_dynamic_aho() {
 // добавить s
 // удалить s
 // найти кол-во вхождений строк из множества в s
-// https://codeforces.com/problemset/problem/710/F?f0a28=1
 // void example() {
 //     int m;
 //     cin >> m;

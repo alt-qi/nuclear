@@ -73,11 +73,15 @@ sections:
     files:
       - title: "Прагмы, генератор случайных чисел и замер времени"
         path: "include/algo/cpp/pragmas_rng_timing.hpp"
+  - title: "Идеи и приёмы"
+    files:
+      - title: "Приёмы и короткие примеры"
+        path: "include/notes/problem-solving.md"
   - title: "Теоретические справки"
     files:
       - title: "Формулы, обоснования и условия применения"
         path: "include/notes/theory.md"
-  - title: "Идеи решения задач"
+  - title: "Дополнительная теория"
     files:
-      - title: "Повторяющиеся приёмы московских контестов"
-        path: "include/notes/problem-solving.md"
+      - title: "Специальные методы"
+        path: "include/notes/advanced-theory.md"

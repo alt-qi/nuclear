@@ -1,7 +1,7 @@
 #pragma once
 
 /// &TRD_BEGIN
-/// @author OpenAI Codex
+/// @author Не указан в справочнике
 /// @brief Расширенный Евклид для знаковых long long.
 /// @date 2026-11-07
 
