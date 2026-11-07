@@ -89,4 +89,4 @@ struct AhoCorasick {
 
     int next_state(int v, char c) { return nodes[v].next[get_char(c)]; }
 };
-// &TRD_END
+/// &TRD_END
