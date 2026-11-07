@@ -67,7 +67,8 @@ make typst
 ```
 
 The result is `build/trd.pdf`: a landscape A4 document with two code columns,
-a centered `std::nuclear` cover with yellow colons, a table of contents,
+a centered `std::nuclear` title with yellow colons and a two-column table of
+contents on the same first page,
 numbered sections and C++ syntax highlighting. Every page shows the university
 and team at the top left and its page number at the top right. This command
 does not run CMake. Typst is not required for the ordinary `make` command.
