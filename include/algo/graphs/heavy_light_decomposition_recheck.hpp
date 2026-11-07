@@ -1,231 +1,101 @@
-#ifdef NUCLEAR_TRD_EXAMPLE
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
-constexpr int N = 16;
-#endif
+#pragma once
+
+#include <cassert>
+#include <utility>
+#include <vector>
 
 /// &TRD_BEGIN
-/// @author Не указан в исходном файле
-/// @brief HLD RECHECK.
-/// @date 2026-11-06
-/// @note Дата переноса; код из приложенного файла без изменений.
+/// @author Автор исходника не указан. Переработка Codex.
+/// @brief HLD. Сумма весов вершин на пути с точечными обновлениями.
+/// @date 2026-11-07
+/// @note Построение O(n), обновление O(log n), запрос O(log^2 n), память O(n).
 
-int n, q;
-vector<int> g[N];
-ll vertex_value[N];
-int sz[N];
-int par[N];
+class HLD {
+    int n;
+    vector<int> parent, depth, head, pos;
+    vector<long long> tree;
 
-void calc_sz(int v, int p_node = 0) {
-    par[v] = p_node;
-    sz[v] = 1;
-    
-    int heavy_child_candidate = -1;
-    int max_sz_child = 0;
-
-    for (int i = 0; i < g[v].size(); ++i) {
-        int& u = g[v][i];
-        if (u == p_node) continue;
-        
-        calc_sz(u, v);
-        sz[v] += sz[u];
-        
-        if (sz[u] > max_sz_child) {
-            max_sz_child = sz[u];
+    // Сумма на полуинтервале [l, r) в порядке декомпозиции.
+    long long range_sum(int l, int r) const {
+        long long sum = 0;
+        for (l += n, r += n; l < r; l /= 2, r /= 2) {
+            if (l % 2) sum += tree[l++];
+            if (r % 2) sum += tree[--r];
         }
+        return sum;
     }
-    
-    for (int i = 0; i < g[v].size(); ++i) {
-        int u = g[v][i];
-        if (u == p_node) continue;
-        if (sz[u] == max_sz_child && max_sz_child > 0) {
-            swap(g[v][0], g[v][i]);
-            break; 
-        }
-    }
-    if (!g[v].empty() && g[v][0] == p_node) {
-        for(int i = 1; i < g[v].size(); ++i) {
-            if(g[v][i] != p_node) {
-                swap(g[v][0], g[v][i]);
-                break;
+
+public:
+    // Связное неориентированное дерево. Вершины от 0 до n - 1.
+    HLD(const vector<vector<int>>& graph,
+        const vector<long long>& values, int root = 0)
+        : n(static_cast<int>(graph.size())), parent(n, -1), depth(n),
+          head(n), pos(n), tree(2 * n) {
+        assert(0 <= root && root < n && values.size() == graph.size());
+
+        vector<int> order{root}, size(n, 1), heavy(n, -1);
+        order.reserve(n);
+        for (int i = 0; i < static_cast<int>(order.size()); ++i) {
+            int v = order[i];
+            for (int u : graph[v]) {
+                if (u == parent[v]) continue;
+                parent[u] = v;
+                depth[u] = depth[v] + 1;
+                order.push_back(u);
             }
         }
+
+        // Снизу вверх выбираем ребёнка с наибольшим поддеревом.
+        for (int i = n - 1; i > 0; --i) {
+            int v = order[i], p = parent[v];
+            size[p] += size[v];
+            if (heavy[p] == -1 || size[v] > size[heavy[p]]) heavy[p] = v;
+        }
+
+        // Сначала нумеруем тяжёлую цепь, затем лёгкие поддеревья.
+        order.resize(1);
+        for (int timer = 0; !order.empty();) {
+            int h = order.back();
+            order.pop_back();
+            for (int v = h; v != -1; v = heavy[v]) {
+                head[v] = h;
+                pos[v] = timer++;
+                tree[n + pos[v]] = values[v];
+                for (int u : graph[v]) {
+                    if (u != parent[v] && u != heavy[v]) order.push_back(u);
+                }
+            }
+        }
+        for (int i = n - 1; i > 0; --i) tree[i] = tree[2 * i] + tree[2 * i + 1];
     }
-}
 
-int timer;
-int tin[N];
-int tout[N];
-int head[N];
-
-void mark_vertexes(int v, int p_node, bool heavy_way) {
-    tin[v] = timer++;
-    if (heavy_way) {
-        head[v] = head[p_node];
-    } else {
-        head[v] = v;
+    void set(int v, long long value) {
+        int i = n + pos[v];
+        tree[i] = value;
+        for (i /= 2; i > 0; i /= 2) tree[i] = tree[2 * i] + tree[2 * i + 1];
     }
 
-    if (!g[v].empty() && g[v][0] != p_node) {
-        mark_vertexes(g[v][0], v, true);
+    void add(int v, long long delta) {
+        set(v, tree[n + pos[v]] + delta);
     }
 
-    for (int i = 0; i < g[v].size(); ++i) {
-        int u = g[v][i];
-        if (u == p_node || u == g[v][0]) continue;
-        mark_vertexes(u, v, false);
+    long long path_sum(int u, int v) const {
+        long long sum = 0;
+        while (head[u] != head[v]) {
+            if (depth[head[u]] < depth[head[v]]) swap(u, v);
+            sum += range_sum(pos[head[u]], pos[u] + 1);
+            u = parent[head[u]];
+        }
+        if (pos[u] > pos[v]) swap(u, v);
+        return sum + range_sum(pos[u], pos[v] + 1);
     }
-    tout[v] = timer;
-}
-
-class Node {
-public:
-    ll value;
-    Node(ll x = 0) : value(x) {}
 };
 
-ostream& operator<<(ostream& out, const Node& nd) {
-    out << nd.value;
-    return out;
-}
-
-Node nll_node(0);
-
-Node t[2 * N];
-Node a[N + 1];
-
-Node combine(Node l, Node r) {
-    return Node(l.value + r.value);
-}
-
-void build(int v_seg, int vl, int vr) {
-    if (vl + 1 == vr) {
-        t[v_seg] = a[vl];
-        return;
-    }
-    int vm = vl + (vr - vl) / 2;
-    build(2 * v_seg, vl, vm);
-    build(2 * v_seg + 1, vm, vr);
-    t[v_seg] = combine(t[2 * v_seg], t[2 * v_seg + 1]);
-}
-
-void update(int v_seg, int vl, int vr, int index_to_update, Node new_val_node) {
-    if (vl + 1 == vr) {
-        t[v_seg] = new_val_node;
-        return;
-    }
-    int vm = vl + (vr - vl) / 2;
-    if (index_to_update < vm) {
-        update(2 * v_seg, vl, vm, index_to_update, new_val_node);
-    } else {
-        update(2 * v_seg + 1, vm, vr, index_to_update, new_val_node);
-    }
-    t[v_seg] = combine(t[2 * v_seg], t[2 * v_seg + 1]);
-}
-
-Node get(int v_seg, int vl, int vr, int ql, int qr_inclusive) {
-    if (ql > qr_inclusive) return nll_node;
-
-    if (ql <= vl && (vr - 1) <= qr_inclusive) {
-        return t[v_seg];
-    }
-    if ((vr - 1) < ql || qr_inclusive < vl) {
-        return nll_node;
-    }
-
-    int vm = vl + (vr - vl) / 2;
-    Node left_res = get(2 * v_seg, vl, vm, ql, qr_inclusive);
-    Node right_res = get(2 * v_seg + 1, vm, vr, ql, qr_inclusive);
-    return combine(left_res, right_res);
-}
-
-bool ancestor(int v_anc, int u_desc) {
-    if (v_anc == 0) return true;
-    if (u_desc == 0) return false;
-    return tin[v_anc] <= tin[u_desc] && tin[u_desc] < tout[v_anc];
-}
-
-ll get_way_value(int cur_a, int cur_b) {
-    ll result = 0;
-    
-    int original_a = cur_a;
-    int original_b = cur_b;
-
-    while (!ancestor(head[cur_a], original_b)) {
-        if (cur_a == 0) break;
-        result += get(1, 1, n + 1, tin[head[cur_a]], tin[cur_a]).value;
-        cur_a = par[head[cur_a]];
-    }
-    
-    while (!ancestor(head[cur_b], original_a)) {
-        if (cur_b == 0) break;
-        result += get(1, 1, n + 1, tin[head[cur_b]], tin[cur_b]).value;
-        cur_b = par[head[cur_b]];
-    }
-
-    if (tin[cur_a] > tin[cur_b]) {
-        swap(cur_a, cur_b);
-    }
-    result += get(1, 1, n + 1, tin[cur_a], tin[cur_b]).value;
-    
-    return result;
-}
-
-void build_hld() {
-    calc_sz(1, 0);
-
-    timer = 1;
-    mark_vertexes(1, 0, false);
-
-    for (int i = 1; i <= n; ++i) {
-        a[tin[i]] = Node(vertex_value[i]);
-    }
-    build(1, 1, n + 1);
-}
-
-void solve() {
-    cin >> n >> q;
-    for (int i = 0; i < n; ++i) {
-        cin >> vertex_value[i + 1];
-    }
-
-    for (int i = 0; i < n - 1; ++i) {
-        int v, u;
-        cin >> v >> u;
-        v++; u++;
-        g[v].push_back(u);
-        g[u].push_back(v);
-    }
-
-    build_hld();
-
-    while (q--) {
-        int type;
-        cin >> type;
-        if (type == 0) {
-            int ind, x;
-            cin >> ind >> x;
-            ind++;
-
-            vertex_value[ind] += (ll)x;
-            update(1, 1, n + 1, tin[ind], Node(vertex_value[ind]));
-        } else {
-            int v, u;
-            cin >> v >> u;
-            v++; u++;
-            cout << get_way_value(v, u) << "\n";
-        }
-    }
-}
-
-// Пример использования
+// Пример использования.
 inline bool example_hld() {
-    n = 2; g[1] = {2}; g[2] = {1};  // вершины с единицы
-    vertex_value[1] = 3; vertex_value[2] = 5;
-    build_hld();  // корень 1
-    bool ok = get_way_value(1, 2) == 8;  // сумма на пути
-    update(1, 1, n + 1, tin[2], Node(9));  // заменить вес вершины 2
-    return ok && get_way_value(1, 2) == 12;
+    HLD hld({{1}, {0}}, {3, 5});
+    hld.add(1, 4);
+    hld.set(0, -2);
+    return hld.path_sum(0, 1) == 7;
 }
 /// &TRD_END
