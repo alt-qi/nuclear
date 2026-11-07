@@ -1,3 +1,8 @@
+#ifdef NUCLEAR_TRD_EXAMPLE
+#include <bits/stdc++.h>
+using namespace std;
+#endif
+
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
 /// @brief Ахо — Корасик RECHECK.
@@ -74,4 +79,13 @@ struct Aho {
         return res;
     }
 };
+
+// Пример использования
+inline bool example_aho_corasick() {
+    Aho aho;  // непустые шаблоны из a..z
+    int id = aho.add_pattern("ab");
+    aho.build();  // после всех добавлений
+    int state = aho.go(aho.go(0, 'a'), 'b');
+    return aho.get_matches(state) == std::vector<int>{id};
+}
 /// &TRD_END

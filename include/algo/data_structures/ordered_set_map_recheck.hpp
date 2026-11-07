@@ -16,4 +16,9 @@ using ordered_set = tree<T, null_type, cmp, rb_tree_tag, tree_order_statistics_n
 
 template<class K, class V, class cmp = less<K>>
 using ordered_map = tree<K, V, cmp, rb_tree_tag, tree_order_statistics_node_update>;
+
+// Пример использования
+inline bool example_ordered_map() { ordered_map<int, int> m;
+    m[8] = 4; m[3] = 2;
+    return m.order_of_key(8) == 1 && m.find_by_order(0)->first == 3; }
 /// &TRD_END

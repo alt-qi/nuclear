@@ -1,3 +1,8 @@
+#ifdef NUCLEAR_TRD_EXAMPLE
+#include <bits/stdc++.h>
+using namespace std;
+#endif
+
 /// &TRD_BEGIN
 /// @author Не указан в исходном файле
 /// @brief Min Cost Max Flow (MCMF) RECHECK.
@@ -134,4 +139,16 @@ struct MCMF {
         return {flow, min_cost};
     }
 };
+
+// Пример использования
+inline bool example_mcmf() {
+    MCMF net(3);
+    net.add_edge(0, 1, 3, 1); net.add_edge(1, 2, 3, 2);  // ёмкость, цена
+    auto [flow, cost] = net.solve(0, 2, 2);  // исток, сток, лимит
+    return flow == 2 && cost == 6;
+}
 /// &TRD_END
+
+#ifdef NUCLEAR_TRD_EXAMPLE
+inline const MCMF::ll MCMF::INF;
+#endif
