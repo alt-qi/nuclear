@@ -22,8 +22,8 @@ sections:
         path: "include/algo/data_structures/fenwick_tree/fenwick_tree_recheck.hpp"
   - title: "Строковые алгоритмы"
     files:
-      - title: "Динамический Ахо — Корасик"
-        path: "include/algo/strings/dynamic_aho_corasick/dynamic_aho_corasick.hpp"
+      # - title: "Динамический Ахо — Корасик"
+      #   path: "include/algo/strings/dynamic_aho_corasick/dynamic_aho_corasick.hpp"
       - title: "Суффиксный автомат RECHECK"
         path: "include/algo/strings/suffix_automaton_recheck.hpp"
       - title: "Суффиксное дерево RECHECK"
